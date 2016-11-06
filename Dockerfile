@@ -94,4 +94,4 @@ RUN apt-get update && apt-get install -y postgresql
 COPY ./wait-for-postgres.sh /
 COPY ./start.sh /usr/local/bin
 
-CMD /usr/local/start.sh
+CMD /usr/local/bin/start.sh
