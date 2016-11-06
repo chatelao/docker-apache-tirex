@@ -1,5 +1,5 @@
-FROM ubuntu:14.04
-# FROM debian:8.4
+# FROM ubuntu:14.04
+FROM debian:8.4
 MAINTAINER Philip Beelmann <beelmann@geofabrik.de>
 
 RUN apt-get update && apt-get install -y \
