@@ -60,6 +60,9 @@ RUN \
  && git clone https://github.com/gravitystorm/openstreetmap-carto \
  && cd openstreetmap-carto \
  && ./get-shapefiles.sh \
+# opentopomap
+ && mkdir -p /srv; cd /srv \
+ && git clone https://github.com/chatelao/OpenTopoMap \
 # create tile directories
  && install -d -o tirex -g tirex /var/lib/tirex/tiles/osmbright/ \
  && install -d -o tirex -g tirex /var/lib/tirex/tiles/osmcarto/ \
@@ -75,6 +78,7 @@ VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
 # COPY osmbright.conf /etc/tirex/renderer/mapnik/
 COPY osmcarto_project.yaml /srv/openstreetmap-carto/project.yaml
 COPY osmcarto.conf /etc/tirex/renderer/mapnik/
+# COPY opentopo.conf /etc/tirex/renderer/mapnik/
 
 # RUN cd /srv/osm-bright \
 # && ./make.py \
