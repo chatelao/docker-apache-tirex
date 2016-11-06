@@ -74,19 +74,21 @@ EXPOSE 80
 
 VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
 
-# COPY osmbright_configure.py /srv/osm-bright/configure.py
-# COPY osmbright.conf /etc/tirex/renderer/mapnik/
+COPY osmbright_configure.py /srv/osm-bright/configure.py
+COPY osmbright.conf /etc/tirex/renderer/mapnik/
+
 COPY osmcarto_project.yaml /srv/openstreetmap-carto/project.yaml
 COPY osmcarto.conf /etc/tirex/renderer/mapnik/
+
 COPY opentopo.conf /etc/tirex/renderer/mapnik/
 
-# RUN cd /srv/osm-bright \
-# && ./make.py \
-# && cd OSMBright \
-# && carto project.mml > project.xml
-RUN cd /srv/openstreetmap-carto/scripts \
- && python yaml2mml.py \
- && carto /srv/openstreetmap-carto/project.mml > /srv/openstreetmap-carto/project.xml
+RUN cd /srv/osm-bright \
+  && ./make.py \
+  && cd OSMBright \
+  && carto project.mml > project.xml
+# RUN cd /srv/openstreetmap-carto/scripts \
+# && python yaml2mml.py \
+# && carto /srv/openstreetmap-carto/project.mml > /srv/openstreetmap-carto/project.xml
 
 RUN apt-get update && apt-get install -y postgresql
 COPY ./wait-for-postgres.sh /
