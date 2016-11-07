@@ -66,6 +66,7 @@ RUN \
 # create tile directories
  && install -d -o tirex -g tirex /var/lib/tirex/tiles/osmbright/ \
  && install -d -o tirex -g tirex /var/lib/tirex/tiles/osmcarto/ \
+ && install -d -o tirex -g tirex /var/lib/tirex/tiles/opentopomap/ \
  && rm -rf /var/lib/mod_tile \
  && ln -s /var/lib/tirex/tiles /var/lib/mod_tile \
  && chown tirex:tirex -R /var/lib/tirex/tiles/ 
